@@ -8,23 +8,23 @@ class BendFormat < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/dearlordylord/bend-idea/releases/download/v0.1.13/bend-format-0.1.13-macos-aarch64.tar.gz"
-      sha256 "fce2b91d6068b54d52a5f0416e06906d2e04e32fa8c93d63bee48d889c013979"
+      url "https://github.com/dearlordylord/bend-idea/releases/download/v0.1.14/bend-format-0.1.14-macos-aarch64.tar.gz"
+      sha256 "61380879545d73f2df8fd508923c63d8054f7df31208bdd4d278e23e14247e68"
     end
     on_intel do
-      url "https://github.com/dearlordylord/bend-idea/releases/download/v0.1.13/bend-format-0.1.13-macos-x64.tar.gz"
-      sha256 "1bdc19a86c719eb57060b868c3f5bc267991fedc6a23d9c9053c8a78a80e3850"
+      url "https://github.com/dearlordylord/bend-idea/releases/download/v0.1.14/bend-format-0.1.14-macos-x64.tar.gz"
+      sha256 "af96730ea24ad4af8ad9c2d6b8232a65e60ab3e023e908657b61ae003b8823ce"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/dearlordylord/bend-idea/releases/download/v0.1.13/bend-format-0.1.13-linux-aarch64.tar.gz"
-      sha256 "e7c091aedcd564e34809e54772d5ee907c0ab400e6b4ab64585e5e85b2be40dc"
+      url "https://github.com/dearlordylord/bend-idea/releases/download/v0.1.14/bend-format-0.1.14-linux-aarch64.tar.gz"
+      sha256 "7d6d58c367fc0a58d88ddaba5f2586067677129f398eb49336668814f96c146e"
     end
     on_intel do
-      url "https://github.com/dearlordylord/bend-idea/releases/download/v0.1.13/bend-format-0.1.13-linux-x64.tar.gz"
-      sha256 "387371a917f2b2a300a7455a3ead6ae9ff1c2268644c48c7915511b51d7c69f1"
+      url "https://github.com/dearlordylord/bend-idea/releases/download/v0.1.14/bend-format-0.1.14-linux-x64.tar.gz"
+      sha256 "6d615a089717b968fa93b6cefab7d3b6b02f26dda1c92666965644f1420e2472"
     end
   end
 
@@ -34,7 +34,12 @@ class BendFormat < Formula
   end
 
   test do
-    assert_match "bend-format-tool #{version}", shell_output("#{bin}/bend-format --version")
+    assert_equal "bend-format #{version}\n", shell_output("#{bin}/bend-format --version")
+    help = shell_output("#{bin}/bend-format --help")
+    assert_match "bend-format check FILE ...", help
+    assert_match "Exit codes:", help
+    assert_match "bend-format check FILE ...", shell_output("#{bin}/bend-format check --help")
+    assert_match "Unknown option: --unknown", shell_output("#{bin}/bend-format check --unknown 2>&1", 2)
     (testpath/".editorconfig").write <<~EOS
       root = true
       [*.bend]
@@ -72,6 +77,10 @@ class BendFormat < Formula
     system bin/"bend-format", "fix", "coverage.bend"
     assert_equal expected, (testpath/"coverage.bend").read
     system bin/"bend-format", "check", "coverage.bend"
-    assert_match "unavailable:", shell_output("#{bin}/bend-format check missing.bend", 2)
+    (testpath/"-dash file.bend").write source
+    system bin/"bend-format", "fix", "--", "-dash file.bend"
+    assert_equal "def main(x: U32, y: U32) -> U32:\n  x\n", (testpath/"-dash file.bend").read
+    system bin/"bend-format", "check", "--", "-dash file.bend"
+    assert_match "file not found", shell_output("#{bin}/bend-format check missing.bend", 2)
   end
 end
