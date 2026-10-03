@@ -2,7 +2,10 @@ class BendFormat < Formula
   desc "Formatter and style checker for Bend source files"
   homepage "https://github.com/dearlordylord/bend-idea#standalone-formatter-and-style-checker"
   version "0.1.12"
-  license all_of: ["Apache-2.0", { "GPL-2.0-only" => { with: "Classpath-exception-2.0" } }]
+  license all_of: [
+    "Apache-2.0",
+    "GPL-2.0-only" => { with: "Classpath-exception-2.0" },
+  ]
 
   on_macos do
     on_arm do
