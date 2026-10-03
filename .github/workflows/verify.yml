@@ -1,0 +1,35 @@
+name: Install and test
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  install:
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [macos-15, macos-15-intel, ubuntu-22.04, ubuntu-22.04-arm]
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+      - uses: Homebrew/actions/setup-homebrew@9f17989bd508c794353d974d1756f23b0bcf10c1
+        with:
+          stable: true
+      - name: Check formula style and metadata
+        run: |
+          brew style Formula/bend-format.rb
+          brew audit --strict dearlordylord/tap/bend-format
+      - name: Install actual package
+        run: brew install dearlordylord/tap/bend-format
+      - name: Test installed command
+        run: |
+          bend-format --version
+          brew test dearlordylord/tap/bend-format
+      - name: Verify uninstall
+        run: brew uninstall bend-format
