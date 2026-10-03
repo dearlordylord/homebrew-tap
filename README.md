@@ -27,6 +27,8 @@ Need Homebrew first? Follow [brew.sh](https://brew.sh/). Windows users can downl
 
 ## Maintenance
 
+Follow the [combined release procedure](https://github.com/dearlordylord/bend-idea/blob/master/docs/releasing.md) for formatter archives, version metadata and the IntelliJ custom repository.
+
 The formula downloads immutable, versioned release assets from [bend-idea](https://github.com/dearlordylord/bend-idea). Publish and verify the four platform archives there before changing the formula. Update all four versioned URLs and SHA-256 values from the verified `BEND-FORMAT-SHA256SUMS.txt`. Keep the complete runtime, licenses and notices together under `libexec`; link only the launcher into `bin`.
 
 CI installs and tests the actual formula on macOS Intel/Apple Silicon and Linux x64/ARM64. Runtime security updates arrive in new formatter distributions; refresh the formula when those releases ship.
