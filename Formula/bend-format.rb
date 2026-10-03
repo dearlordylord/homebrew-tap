@@ -1,7 +1,6 @@
 class BendFormat < Formula
   desc "Formatter and style checker for Bend source files"
   homepage "https://github.com/dearlordylord/bend-idea#standalone-formatter-and-style-checker"
-  version "0.1.12"
   license all_of: [
     "Apache-2.0",
     "GPL-2.0-only" => { with: "Classpath-exception-2.0" },
@@ -9,22 +8,22 @@ class BendFormat < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/dearlordylord/bend-idea/releases/download/v#{version}/bend-format-#{version}-macos-aarch64.tar.gz"
+      url "https://github.com/dearlordylord/bend-idea/releases/download/v0.1.12/bend-format-0.1.12-macos-aarch64.tar.gz"
       sha256 "856b1611682a462efe7cd261bb6e3683f8a3a25d4db313c9291c1a409bdd4fdb"
     end
     on_intel do
-      url "https://github.com/dearlordylord/bend-idea/releases/download/v#{version}/bend-format-#{version}-macos-x64.tar.gz"
+      url "https://github.com/dearlordylord/bend-idea/releases/download/v0.1.12/bend-format-0.1.12-macos-x64.tar.gz"
       sha256 "0f657680b6af352041eae72537336842860dbda4376e914fafea6315b705ff69"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/dearlordylord/bend-idea/releases/download/v#{version}/bend-format-#{version}-linux-aarch64.tar.gz"
+      url "https://github.com/dearlordylord/bend-idea/releases/download/v0.1.12/bend-format-0.1.12-linux-aarch64.tar.gz"
       sha256 "c697425001f5835b233e35c1a3208af71cdfe2c275246c2d8cd73094ab469e02"
     end
     on_intel do
-      url "https://github.com/dearlordylord/bend-idea/releases/download/v#{version}/bend-format-#{version}-linux-x64.tar.gz"
+      url "https://github.com/dearlordylord/bend-idea/releases/download/v0.1.12/bend-format-0.1.12-linux-x64.tar.gz"
       sha256 "fd96b2750bfe514d963830349a6267a6893268e79484a02754797676520535a1"
     end
   end
