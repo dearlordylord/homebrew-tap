@@ -119,6 +119,5 @@ class BendFormat < Formula
     system bin/"bend-format", "fix", "equality.bend"
     assert_equal equality_expected, (testpath/"equality.bend").read
     system bin/"bend-format", "check", "equality.bend"
-
   end
 end
