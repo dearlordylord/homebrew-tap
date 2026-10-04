@@ -8,23 +8,23 @@ class BendFormat < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/dearlordylord/bend-idea/releases/download/v0.1.15/bend-format-0.1.15-macos-aarch64.tar.gz"
-      sha256 "7e74ae9ee79450ef7c2a40da773845f1f960711723fded83677984f8c41a6212"
+      url "https://github.com/dearlordylord/bend-idea/releases/download/v0.1.16/bend-format-0.1.16-macos-aarch64.tar.gz"
+      sha256 "537a79d3841ee5abcd3a10b6593d95e41196c703f770b4d8c30446b4825b9582"
     end
     on_intel do
-      url "https://github.com/dearlordylord/bend-idea/releases/download/v0.1.15/bend-format-0.1.15-macos-x64.tar.gz"
-      sha256 "42249b0d7881bcb67ac8cdca34dc23dedc67c14bebcdbd2f36e5f84876ca507f"
+      url "https://github.com/dearlordylord/bend-idea/releases/download/v0.1.16/bend-format-0.1.16-macos-x64.tar.gz"
+      sha256 "d63d5e9e847d8c485bb60814cc2117dc25fe75cef266895720e571f940dba447"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/dearlordylord/bend-idea/releases/download/v0.1.15/bend-format-0.1.15-linux-aarch64.tar.gz"
-      sha256 "7c7d0a0c759a14a0f6aca733e0f6ae2c0378f804237aae130a75626c8fb9660b"
+      url "https://github.com/dearlordylord/bend-idea/releases/download/v0.1.16/bend-format-0.1.16-linux-aarch64.tar.gz"
+      sha256 "7f41ea9619401f3098b1507bdd9edbede248a41bb467660f7ae4e2e2a9115f86"
     end
     on_intel do
-      url "https://github.com/dearlordylord/bend-idea/releases/download/v0.1.15/bend-format-0.1.15-linux-x64.tar.gz"
-      sha256 "8749328536a7511751bd04c9df09202ecbbd5527bca14e76f799d57136247c82"
+      url "https://github.com/dearlordylord/bend-idea/releases/download/v0.1.16/bend-format-0.1.16-linux-x64.tar.gz"
+      sha256 "8bac8540948e929cd0754ee2058e868b554ac1f9d8c8374fa83badd44c32dc1c"
     end
   end
 
