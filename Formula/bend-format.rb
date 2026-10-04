@@ -8,23 +8,23 @@ class BendFormat < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/dearlordylord/bend-idea/releases/download/v0.1.14/bend-format-0.1.14-macos-aarch64.tar.gz"
-      sha256 "61380879545d73f2df8fd508923c63d8054f7df31208bdd4d278e23e14247e68"
+      url "https://github.com/dearlordylord/bend-idea/releases/download/v0.1.15/bend-format-0.1.15-macos-aarch64.tar.gz"
+      sha256 "7e74ae9ee79450ef7c2a40da773845f1f960711723fded83677984f8c41a6212"
     end
     on_intel do
-      url "https://github.com/dearlordylord/bend-idea/releases/download/v0.1.14/bend-format-0.1.14-macos-x64.tar.gz"
-      sha256 "af96730ea24ad4af8ad9c2d6b8232a65e60ab3e023e908657b61ae003b8823ce"
+      url "https://github.com/dearlordylord/bend-idea/releases/download/v0.1.15/bend-format-0.1.15-macos-x64.tar.gz"
+      sha256 "42249b0d7881bcb67ac8cdca34dc23dedc67c14bebcdbd2f36e5f84876ca507f"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/dearlordylord/bend-idea/releases/download/v0.1.14/bend-format-0.1.14-linux-aarch64.tar.gz"
-      sha256 "7d6d58c367fc0a58d88ddaba5f2586067677129f398eb49336668814f96c146e"
+      url "https://github.com/dearlordylord/bend-idea/releases/download/v0.1.15/bend-format-0.1.15-linux-aarch64.tar.gz"
+      sha256 "7c7d0a0c759a14a0f6aca733e0f6ae2c0378f804237aae130a75626c8fb9660b"
     end
     on_intel do
-      url "https://github.com/dearlordylord/bend-idea/releases/download/v0.1.14/bend-format-0.1.14-linux-x64.tar.gz"
-      sha256 "6d615a089717b968fa93b6cefab7d3b6b02f26dda1c92666965644f1420e2472"
+      url "https://github.com/dearlordylord/bend-idea/releases/download/v0.1.15/bend-format-0.1.15-linux-x64.tar.gz"
+      sha256 "8749328536a7511751bd04c9df09202ecbbd5527bca14e76f799d57136247c82"
     end
   end
 
@@ -82,5 +82,43 @@ class BendFormat < Formula
     assert_equal "def main(x: U32, y: U32) -> U32:\n  x\n", (testpath/"-dash file.bend").read
     system bin/"bend-format", "check", "--", "-dash file.bend"
     assert_match "file not found", shell_output("#{bin}/bend-format check missing.bend", 2)
+
+    # Long equality propositions must wrap in the actual installed release.
+    (testpath/".editorconfig").write <<~EOS
+      root = true
+      [*.bend]
+      indent_style = space
+      indent_size = 2
+      bend_max_line_length = 25
+    EOS
+    equality = <<~BEND
+      law preserved:
+        {combine(alpha, beta, gamma) == (combine(alpha, beta, gamma)) : Nat}
+    BEND
+    equality_expected = <<~BEND
+      law preserved:
+        {
+          combine(
+            alpha,
+            beta,
+            gamma
+          )
+          == (combine(
+            alpha,
+            beta,
+            gamma
+          ))
+          : Nat
+        }
+    BEND
+    (testpath/"equality.bend").write equality
+    assert_match "would-change:", shell_output("#{bin}/bend-format check equality.bend", 1)
+    assert_equal equality, (testpath/"equality.bend").read
+    system bin/"bend-format", "fix", "equality.bend"
+    assert_equal equality_expected, (testpath/"equality.bend").read
+    system bin/"bend-format", "fix", "equality.bend"
+    assert_equal equality_expected, (testpath/"equality.bend").read
+    system bin/"bend-format", "check", "equality.bend"
+
   end
 end
