@@ -84,6 +84,7 @@ class BendFormat < Formula
     assert_match "file not found", shell_output("#{bin}/bend-format check missing.bend", 2)
 
     # Long equality propositions must wrap in the actual installed release.
+    (testpath/".editorconfig").unlink
     (testpath/".editorconfig").write <<~EOS
       root = true
       [*.bend]
