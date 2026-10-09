@@ -33,3 +33,24 @@ jobs:
           brew test dearlordylord/tap/bend-format
       - name: Verify uninstall
         run: brew uninstall bend-format
+
+  hapsland:
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [macos-15, ubuntu-24.04-arm]
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: Homebrew/actions/setup-homebrew@9f17989bd508c794353d974d1756f23b0bcf10c1
+        with:
+          stable: true
+      - name: Check Hapsland formula style
+        run: brew style Formula/hapsland.rb
+      - name: Install and test the published platform package
+        run: |
+          brew install dearlordylord/tap/hapsland
+          brew test dearlordylord/tap/hapsland
+      - name: Verify uninstall without activating agent hooks
+        run: brew uninstall hapsland
