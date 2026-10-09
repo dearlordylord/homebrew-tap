@@ -1,20 +1,20 @@
 class Hapsland < Formula
   desc "Runtime-neutral code review integration for coding agents"
   homepage "https://github.com/dearlordylord/hapsland-releases"
-  version "0.1.0"
+  version "0.1.1"
   depends_on arch: :arm64
 
   on_macos do
     on_arm do
-      url "https://github.com/dearlordylord/hapsland-releases/releases/download/v0.1.0/hapsland-0.1.0-darwin-arm64.tar.gz"
-      sha256 "62140a733cf5347768502f28f8713b620ebe2afab2c013fceaf70179bd76745d"
+      url "https://github.com/dearlordylord/hapsland-releases/releases/download/v0.1.1/hapsland-0.1.1-darwin-arm64.tar.gz"
+      sha256 "6cd53330fe2ec9711d21b702423a8924a3a356f28459fccd48d0d710f4176f99"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/dearlordylord/hapsland-releases/releases/download/v0.1.0/hapsland-0.1.0-linux-arm64.tar.gz"
-      sha256 "f7ac97c26551f53eabc266ec8d83f80109b5a73f90c68ca58c2d4497f5bd3b2c"
+      url "https://github.com/dearlordylord/hapsland-releases/releases/download/v0.1.1/hapsland-0.1.1-linux-arm64.tar.gz"
+      sha256 "c1e5712a335394bbbc7a496f3b457b422cda32b16b22c98b92f91272344015a3"
     end
   end
 
