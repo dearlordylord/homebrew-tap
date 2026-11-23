@@ -1,20 +1,20 @@
 class Hapsland < Formula
   desc "Runtime-neutral code review integration for coding agents"
   homepage "https://github.com/dearlordylord/hapsland-releases"
-  version "0.1.3"
+  version "0.1.5"
   depends_on arch: :arm64
 
   on_macos do
     on_arm do
-      url "https://github.com/dearlordylord/hapsland-releases/releases/download/v0.1.3/hapsland-0.1.3-darwin-arm64.tar.gz"
-      sha256 "ffb36db0b17c9b963a97a72515940098655d09b53acffa91456447e9bb389f2e"
+      url "https://github.com/dearlordylord/hapsland-releases/releases/download/v0.1.5/hapsland-0.1.5-darwin-arm64.tar.gz"
+      sha256 "c32b10c7720bdb3e0a44735885f775151c27e97351c09144f0777e42a6ec6b3f"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/dearlordylord/hapsland-releases/releases/download/v0.1.3/hapsland-0.1.3-linux-arm64.tar.gz"
-      sha256 "da5d0072a908ffb4e86ecab92702025a433b8f7506ff74e069564c722c039089"
+      url "https://github.com/dearlordylord/hapsland-releases/releases/download/v0.1.5/hapsland-0.1.5-linux-arm64.tar.gz"
+      sha256 "8244e18246e3eebcd94fd97476057a95c9fdbc5e2b0b04752c8e877460268ec5"
     end
   end
 
@@ -28,7 +28,7 @@ class Hapsland < Formula
   def caveats
     <<~EOS
       Package installation does not activate coding-agent hooks. Run:
-        #{opt_bin}/hapsland setup --target=#{opt_bin}/hapsland
+        hapsland setup
 
       To update an existing installation, keep old packages until activation:
         HOMEBREW_NO_INSTALL_CLEANUP=1 brew upgrade dearlordylord/tap/hapsland
